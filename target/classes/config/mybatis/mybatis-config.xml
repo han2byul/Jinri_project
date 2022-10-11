@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="vo.ReviewVO" alias="review"/>
+		<typeAlias type="vo.SearchVO" alias="search"/>
+		<typeAlias type="vo.RequestVO" alias="request"/>
+		<typeAlias type="vo.NoticeVO" alias="notice"/>
+		<typeAlias type="vo.CheckoutVO" alias="checkout"/>
+		<typeAlias type="vo.WishVO" alias="wish"/>
+		<typeAlias type="vo.EventVO" alias="event"/>
+		<typeAlias type="vo.QnaVO" alias="qna"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="config/mybatis/mapper/member.xml" />
+		<mapper resource="config/mybatis/mapper/review.xml" />
+		<mapper resource="config/mybatis/mapper/search.xml" />
+		<mapper resource="config/mybatis/mapper/request.xml" />
+		<mapper resource="config/mybatis/mapper/notice.xml" />
+		<mapper resource="config/mybatis/mapper/checkout.xml" />
+		<mapper resource="config/mybatis/mapper/wish.xml" />
+		<mapper resource="config/mybatis/mapper/event.xml" />
+		<mapper resource="config/mybatis/mapper/qna.xml"/>
+	</mappers>
+</configuration>
+
+
+
+
+
+
+
+
+
+
+

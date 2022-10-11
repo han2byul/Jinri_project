@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="member_daoBean" class="dao.MemberDAO">
+		<!-- setter injection : setter를 통해 값을 주입한다  -->
+		<property name="sqlSession" ref="sqlSessionBean"/>
+		
+	<!-- constructor injection : 생성자를 통해 값을 주입한다
+	 	<constructor-arg ref="sqlSessionBean"/>  -->
+	</bean> 
+	
+	<bean id="review_daoBean" class="dao.ReviewDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id="search_daoBean" class="dao.SearchDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id="request_daoBean" class="dao.RequestDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean> 
+	
+	<bean id="notice_daoBean" class="dao.NoticeDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	<bean id="notice_daoBean2" class="dao.NoticeDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id="checkout_daoBean" class="dao.CheckoutDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/> 
+	</bean>
+	
+	<bean id="wish_daoBean" class="dao.WishDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/> 
+	</bean>
+	
+	<bean id="event_daoBean" class="dao.EventDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id="event_daoBean2" class="dao.EventDAO">
+		<property name="sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id = "qna_daoBean" class="dao.QnaDAO">
+		<property name = "sqlSession" ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id = "qna_daoBean2" class="dao.QnaDAO">
+		<property name = "sqlSession" ref="sqlSessionBean"/>
+	</bean>
+</beans>

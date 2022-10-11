@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="c">
+	<!-- 대출현황 전체조회 -->
+	<select id="chkout_list" resultType="checkout">
+		select * from checkout c JOIN book b
+		ON c.reginum = b.reginum
+		order by idx DESC
+	</select>
+		
+	<update id="chkout_update" parameterType="java.util.Map">
+		update checkout set return_date = to_char(return_date+7, 'yyyy/mm/dd')
+		where reginum=#{reginum}
+	</update>
+
+</mapper>

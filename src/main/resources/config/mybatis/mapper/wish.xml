@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="w">
+	<!-- 관심 도서 목록 전체조회 -->
+	<select id="wish_list" resultType="wish" parameterType="String"> 
+		select rank() over(order by idx) as rank, 
+		id, bname, author, b.reginum
+		from book b INNER JOIN wish w
+		ON b.reginum = w.reginum
+		where id = #{id}
+		order by rank DESC
+	</select>
+	
+	<!-- 관심 도서 취소  -->
+	<delete id="wish_delete" parameterType="java.util.Map">
+		delete from wish where reginum = #{reginum}
+	</delete>
+</mapper>

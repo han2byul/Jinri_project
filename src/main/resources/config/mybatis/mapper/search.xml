@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="s">
+
+	<select id="search_book" resultType="search"
+		parameterType="java.util.Map">
+		select * from
+		(select rank() over(order by reginum) no,
+		b.* from book b
+		where
+		<if test="bname!=null">
+			upper(bname) like upper('%'|| #{search} ||'%')
+			or
+			lower(bname) like lower('%'|| #{search} ||'%'))
+		</if>
+		<if test="author!=null">
+			upper(author) like upper('%'|| #{search} ||'%')
+			or
+			lower(author) like lower('%'|| #{search} ||'%'))
+		</if>
+		<if test="all!=null">
+			upper(bname) like upper('%'|| #{search} ||'%')
+			or
+			lower(bname) like lower('%'|| #{search} ||'%')
+			or
+			upper(author) like upper('%'|| #{search} ||'%')
+			or
+			lower(author) like lower('%'|| #{search} ||'%'))
+		</if>
+		where no between #{start} and #{end}
+	</select>
+
+	<!-- 검색시 게시물 수 -->
+	<select id="search_count" resultType="int"
+		parameterType="java.util.Map">
+		select COUNT(*) from book
+		where
+		<if test="bname!=null">
+			upper(bname) like upper('%'|| #{search} ||'%')
+			or
+			lower(bname) like lower('%'|| #{search} ||'%')
+		</if>
+		<if test="author!=null">
+			upper(author) like upper('%'|| #{search} ||'%')
+			or
+			lower(author) like lower('%'|| #{search} ||'%')
+		</if>
+		<if test="all!=null">
+			upper(bname) like upper('%'|| #{search} ||'%')
+			or
+			lower(bname) like lower('%'|| #{search} ||'%')
+			or
+			upper(author) like upper('%'|| #{search} ||'%')
+			or
+			lower(author) like lower('%'|| #{search} ||'%')
+		</if>
+	</select>
+	
+	<!-- 위시 추가하기 -->
+	<insert id="wish_insert" parameterType="search">
+		insert into wish
+		values(
+		seq_wish_idx.nextVal,
+		#{id},
+		#{reginum}
+		)
+	</insert>
+
+</mapper>

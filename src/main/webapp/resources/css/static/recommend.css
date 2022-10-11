@@ -1,0 +1,341 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'NanumSquare';
+}
+a:link, a:visited, a:hover, a:active { color : black; }
+
+li {
+    list-style-type: none;
+}
+
+header {
+    height: 160px;
+}
+
+.all {
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.box {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+#logo {
+    clear: both;
+    display: block;
+    text-align: center;
+    position: relative;
+    z-index: 900;
+}
+
+#logo img {
+    height: 80px;
+    margin-top: 20px;
+}
+
+#top_menu {
+    float: right;
+}
+
+#top_menu li {
+    padding-right: 10px;
+}
+
+#menu {
+    float: right;
+    text-align: right;
+    margin-top: 20px;
+}
+
+#menu li {
+    display: inline-block;
+}
+
+#main h1 {margin-top : 10px; }
+#main_menu li {
+    margin: 50px 0 0 80px;
+    font-family: "맑은고딕";
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#sticky {
+    background-color: #fff;
+    position: sticky;
+    top: -1px;
+    z-index: 800;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.navigation {
+    height: 60px;
+    background: #fff;
+}
+
+.nav_container {
+    width: 1100px;
+    margin: 0 0 0 auto;
+}
+
+.nav_container::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.nav_container nav {
+    float: right;
+}
+
+.nav_container .title {
+    height: 60px;
+    width: 275px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.nav_container .title:hover {
+    font-weight: bold;
+}
+
+.nav_contatiner nav ul {
+    float: right;
+    text-align: left;
+}
+
+.nav_container nav ul li {
+    float: left;
+    position: relative;
+    z-index: 500;
+}
+
+.nav_container nav ul li a,
+.nav_container nav ul li a:visited {
+    display: block;
+    padding: 0 50px;
+    line-height: 59px;
+    color: #000;
+    text-decoration: none;
+}
+
+.nav_container nav ul li a:hover,
+.nav_container nav ul li a:visited:hover {
+    font-weight: bold;
+}
+
+.nav_container nav ul li ul li {
+    width: 190px;
+}
+
+.nav_container nav ul li ul li a {
+    padding: 15px;
+    line-height: 20px;
+}
+
+.nav_dropdown {
+    position: absolute;
+    display: none;
+}
+
+.nav_dropdown div {
+    height: 200px;
+    background-color: #f7eecd;
+}
+
+.menu_bd {
+    border-right: 1px solid #ddd;
+}
+
+.box {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+footer {
+    clear: both;
+    height: 100px;
+    border-top: 1px solid #ab8703;
+    color: #000;
+    margin-top: 500px;
+}
+
+#bottom_menu {
+    height: 50px;
+}
+
+#bottom_menu ul {
+    padding: 20px 0 30px 0;
+    font-weight: bold;
+    padding-top: 50px;
+}
+
+#bottom_menu li {
+    display: inline;
+    margin-right: 30px;
+}
+
+#bottom_menu li a {
+    color: #000;
+    text-decoration: none;
+}
+
+footer .items {
+    float: left;
+    margin: 50px 0 0 10px;
+}
+
+footer h3 {
+    color: #085c27;
+}
+
+footer .items ul {
+    margin-top: 15px;
+}
+
+footer .items li {
+    margin-bottom: 40px;
+    font-size: 10px;
+}
+
+
+
+aside {
+    width: 200px;
+    height: auto;
+    float: left;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+aside ul li {
+    width: 180px;
+    height: 60px;
+    border-bottom: 1px solid #ab8703;
+    padding: 20px;
+    color: #000;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #000;
+}
+
+aside ul li a:hover,
+aside ul li a:visited:hover {
+    background: #f7eecd;
+    color: #000;
+}
+
+.main {
+    width: 850px;
+    height: auto;
+    float: right;
+    margin : 55px 0px 55px 50px;
+}
+
+#strong {
+    font-weight: bold;
+    font-size: 30px;
+    border-bottom: #fff;
+    margin-bottom: 20px;
+}
+
+
+.zoom {
+
+    transition: transform .3s;
+    width: 180px;
+    height: 240px;
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    transform: scale(1.2);
+}
+
+.tab-content ul {
+    width: 180px;
+    height: 250px;
+    text-align: center;
+    display: inline-block;
+    margin : 15px 25px 50px 0px;
+}
+
+.tab-content ul li {
+    width: 180px;
+    margin-bottom : 5px;
+}
+
+.container2 {
+    width: 850px;
+    margin: 35px auto;
+}
+
+ul.tabs {
+    padding: 0px;
+    list-style: none;
+}
+
+ul.tabs li {
+    border: 1px solid #ccc;
+    background: none;
+    color: #222;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+ul.tabs li a {
+    padding: 10px 15px;
+    color: #222;
+    text-decoration: none;
+}
+
+ul.tabs li a:active,
+ul.tabs li a:hover,
+ul.tabs li a:visited {
+    text-decoration: none;
+    color: #222;
+
+    padding: 10px 15px;
+}
+
+
+ul.tabs li.current {
+    background: #cfab42;
+    color: #fff;
+}
+
+
+.tab-content {
+    display: none;
+    margin-top: 30px;
+}
+
+.tab-content.current {
+    display: inherit;
+}
+
+.tab-content a {
+    color: #000;
+    text-decoration: none;
+}
+
+.tab-content a:hover,
+.tab-content a:active {
+    color: #000;
+    text-decoration: underline;
+}
+
+
+.loc_history {
+    padding: 20px 0;
+    border-bottom: 2px solid #ccc;
+}

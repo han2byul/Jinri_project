@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="n">
+
+	<!-- 전체조회 -->
+	<select id="notice_list" resultType="notice"
+		parameterType="java.util.Map"> <!-- select에서만 resultType 사용 -->
+		select * from
+		(select rank() over(order by idx desc) no,
+		n.* from
+		notice_vw n)
+		where no between #{start} and #{end}
+	</select>
+
+	<!-- 메인조회 -->
+	<select id="notice_main" resultType="notice"> 	
+		SELECT * FROM 
+		(SELECT idx, title, regidate FROM notice
+      	 ORDER BY idx DESC) 
+		<![CDATA[WHERE ROWNUM <= 6]]> 
+	</select>
+
+
+	<!-- 검색어 입력 후 리스트 조회 -->
+	<select id="notice_select" resultType="notice"
+		parameterType="java.util.Map">
+		select * from
+		(select rank() over(order by idx desc) no,
+		n.* from notice_vw n
+		where
+		<!-- map 에서 넘어온 title 키가 비어있지 않으면 -->
+		<if test="title!=null">
+			<!-- title 중에 포함되어있는 #{search}를 검색 -->
+			title like '%'|| #{search} ||'%')
+		</if>
+
+		<!-- map 에서 넘어온 content 키가 비어있지 않으면 -->
+		<if test="content!=null">
+			<!-- content 중에 포함되어있는 #{search}를 검색 -->
+			content like '%'|| #{search} ||'%')
+		</if>
+
+		<!-- map 에서 넘어온 제목 + 내용 키가 비어있지 않으면 -->
+		<if test="all!=null">
+			<!-- 제목 + 내용 중에 포함되어있는 #{search}를 검색 -->
+			title like '%'|| #{search} ||'%'
+			or content like '%'|| #{search} ||'%')
+		</if>
+		where no between #{start} and #{end}
+		order by rank DESC
+	</select>
+
+	<!-- 게시글 추가 -->
+	<insert id="notice_insert" parameterType="notice">
+		insert into notice
+		values(
+		seq_notice_idx.nextVal,
+		#{title},
+		#{content},
+		sysdate,
+		0,
+		#{filename,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<!-- 수정 or 삭제를 위한 하나의 게시글 상세 조회 -->
+	<select id="notice_view" resultType="notice" parameterType="int">
+		select * from notice where idx=#{idx}
+	</select>
+
+	<!-- 게시글 수정 -->
+	<update id="notice_update" parameterType="notice">
+		update notice set
+		title=#{title}, content=#{content}, regidate=sysdate,
+		filename=#{filename,jdbcType=VARCHAR}
+		where idx=#{idx}
+	</update>
+
+	<!-- 게시글 삭제 -->
+	<delete id="notice_delete" parameterType="int">
+		delete from notice
+		where idx = #{idx}
+	</delete>
+
+	<!-- 조회수 증가 -->
+	<update id="update_readhit" parameterType="int">
+		<!-- idx에 해당되는 게시글의 readhit을 1씩 증가 -->
+		update notice set readhit = readhit + 1
+		where idx=#{idx}
+	</update>
+
+	<!-- 전체게시물 수 -->
+	<select id="notice_count" resultType="int">
+		select COUNT(*) from notice
+	</select>
+
+	<!-- 검색 결과의 전체 게시물 수 -->
+	<select id="notice_search_count" resultType="int">
+		select COUNT(*) from notice
+		<trim prefix="where" prefixOverrides="or/and">
+			<!-- map 에서 넘어온 title 키가 비어있지 않으면 -->
+			<if test="title!=null">
+				<!-- title 중에 포함되어있는 #{search}를 검색 -->
+				title like '%'|| #{search} ||'%'
+			</if>
+
+			<!-- map 에서 넘어온 content 키가 비어있지 않으면 -->
+			<if test="content!=null">
+				<!-- content 중에 포함되어있는 #{search}를 검색 -->
+				content like '%'|| #{search} ||'%'
+			</if>
+
+			<!-- map 에서 넘어온 제목 + 내용 키가 비어있지 않으면 -->
+			<if test="all!=null">
+				<!-- 제목 + 내용 중에 포함되어있는 #{search}를 검색 -->
+				title like '%'|| #{search} ||'%'
+				or content like '%'|| #{search}
+				||'%'
+			</if>
+		</trim>
+	</select>
+</mapper>
